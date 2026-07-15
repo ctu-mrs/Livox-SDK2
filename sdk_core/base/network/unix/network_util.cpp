@@ -59,12 +59,13 @@ socket_t CreateSocket(uint16_t port, bool nonblock, bool reuse_port, bool is_bro
   if (reuse_port) {
     status = setsockopt(sock, SOL_SOCKET, SO_REUSEADDR,
                         (char *) &on, sizeof (on));
+
     if (status != 0) {
       printf("reuse port failed\n");
       close(sock);
       return -1;
-   }
-#if defined(__APPLE__) && defined(SO_REUSEPORT)
+    }
+
     // macOS returns EADDRINUSE when binding a wildcard address on a port
     // already bound to a specific address unless SO_REUSEPORT is set.
     status = setsockopt(sock, SOL_SOCKET, SO_REUSEPORT,
@@ -74,7 +75,6 @@ socket_t CreateSocket(uint16_t port, bool nonblock, bool reuse_port, bool is_bro
       close(sock);
       return -1;
     }
-#endif
   }
   status = setsockopt(sock, SOL_SOCKET, SO_RCVBUF,
 	  (char *)&recv_buff_size, sizeof(recv_buff_size));
@@ -98,13 +98,11 @@ socket_t CreateSocket(uint16_t port, bool nonblock, bool reuse_port, bool is_bro
   }
   servaddr.sin_port = htons(port);
 
-#ifdef __APPLE__
   // macOS refuses to bind INADDR_BROADCAST (EADDRNOTAVAIL); a wildcard bind
   // still receives broadcast datagrams on the port.
   if (servaddr.sin_addr.s_addr == inet_addr("255.255.255.255")) {
     servaddr.sin_addr.s_addr = INADDR_ANY;
   }
-#endif
 
   status = bind(sock, (const struct sockaddr *)&servaddr, sizeof(servaddr));
   if (status != 0) {
