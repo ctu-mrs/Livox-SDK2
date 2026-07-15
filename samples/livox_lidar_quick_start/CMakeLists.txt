@@ -7,3 +7,5 @@ target_link_libraries(${DEMO_NAME}
         PUBLIC
         livox_lidar_sdk_static
 				)
+
+message(WARNING "compiling sample!!!")

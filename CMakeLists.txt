@@ -27,5 +27,7 @@ if (UNIX)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 endif(UNIX)
 
+message(WARNING "compiling our version!!!")
+
 add_subdirectory(sdk_core)
 add_subdirectory(samples)
