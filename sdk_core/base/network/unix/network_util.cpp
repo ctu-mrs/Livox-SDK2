@@ -101,6 +101,7 @@ socket_t CreateSocket(uint16_t port, bool nonblock, bool reuse_port, bool is_bro
   // macOS refuses to bind INADDR_BROADCAST (EADDRNOTAVAIL); a wildcard bind
   // still receives broadcast datagrams on the port.
   if (servaddr.sin_addr.s_addr == inet_addr("255.255.255.255")) {
+    printf("overriding binding to INADDR_ANY");
     servaddr.sin_addr.s_addr = INADDR_ANY;
   }
 
