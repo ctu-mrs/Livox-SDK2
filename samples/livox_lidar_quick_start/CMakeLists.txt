@@ -9,3 +9,6 @@ target_link_libraries(${DEMO_NAME}
 				)
 
 message(WARNING "compiling sample!!!")
+
+install(TARGETS ${DEMO_NAME}
+        RUNTIME DESTINATION bin)
