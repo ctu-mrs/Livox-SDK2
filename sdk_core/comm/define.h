@@ -38,7 +38,7 @@
 namespace livox {
 namespace lidar {
 
-#pragma pack(1)
+#pragma pack(4)
 
 const uint16_t KDefaultTimeOut = 1000;
 static const uint32_t kMaxCommandBufferSize = 1400;

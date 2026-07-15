@@ -34,7 +34,7 @@ namespace lidar {
 
 typedef enum { kSdkVerNone, kSdkVer0, kSdkVer1 } SdkVersion;
 
-#pragma pack(1)
+#pragma pack(4)
 
 typedef struct {
   uint8_t sof;
