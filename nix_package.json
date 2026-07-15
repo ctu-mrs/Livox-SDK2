@@ -1,6 +1,6 @@
 {
   "name": "livox-sdk2",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "build_type": "cmake",
   "install_mapping": {},
   "build_depends": [
