@@ -13,6 +13,8 @@ add_compile_options(
 	-Wno-unused-const-variable
 	-Wno-unused-parameter
 	-Wno-ignored-qualifiers
+	-Wno-c++20-compat
+	-Wno-error=pragmas
 )
 string(REPLACE "-Werror" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 message(STATUS "main project dir: " ${PROJECT_SOURCE_DIR})

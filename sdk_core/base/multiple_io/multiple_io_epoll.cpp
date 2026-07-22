@@ -59,7 +59,7 @@ bool MultipleIOEpoll::PollSetAdd(PollFd poll_fd) {
   if (max_poll_size_ <= (int)descriptors_.size()) {
     return false;
   }
-  struct epoll_event ee = {0};
+  struct epoll_event ee = {};
   ee.events = GetEvent(poll_fd.event);
   ee.data.fd = poll_fd.fd;
   if (epoll_ctl(epoll_fd_, EPOLL_CTL_ADD, poll_fd.fd, &ee) == -1) {
@@ -73,7 +73,7 @@ bool MultipleIOEpoll::PollSetAdd(PollFd poll_fd) {
 
 bool MultipleIOEpoll::PollSetRemove(PollFd poll_fd) {
   int fd = poll_fd.fd;
-  struct epoll_event ee = {0};
+  struct epoll_event ee = {};
   epoll_ctl(epoll_fd_, EPOLL_CTL_DEL, fd, &ee);
   if (descriptors_.find(fd) != descriptors_.end()) {
       descriptors_.erase(fd);
